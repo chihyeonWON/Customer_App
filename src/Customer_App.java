@@ -37,6 +37,7 @@ public class Customer_App {
 		ImagePanel welcomePanel = new ImagePanel(new ImageIcon("C://Users//ylose//eclipse-workspace//Swing Lessons//Image//welcome.jpg").getImage());
 		frame.setSize(welcomePanel.getWidth(), welcomePanel.getHeight());
 		frame.add(welcomePanel);
+		frame.setResizable(false);
 		frame.setLocationRelativeTo(null); // 기본위치설정해제
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
