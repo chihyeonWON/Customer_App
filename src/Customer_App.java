@@ -3,6 +3,7 @@ import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Image;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 public class Customer_App {
@@ -33,7 +34,9 @@ public class Customer_App {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		ImagePanel welcomePanel = new ImagePanel(new ImageIcon("C://Users//ylose//eclipse-workspace//Swing Lessons//Image//welcome.jpg").getImage());
+		frame.setSize(welcomePanel.getWidth(), welcomePanel.getHeight());
+		frame.add(welcomePanel);
 		frame.setLocationRelativeTo(null); // 기본위치설정해제
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -48,6 +51,13 @@ class ImagePanel extends JPanel{
 		 setSize(new Dimension(img.getWidth(null),img.getHeight(null)));
 		 setPreferredSize(new Dimension(img.getWidth(null),img.getHeight(null)));
 		 setLayout(null);
+	 }
+	 public int getWidth() {
+		 return img.getWidth(null);
+	 }
+	 
+	 public int getHeight() {
+		 return img.getHeight(null);
 	 }
 
 	 public void paintComponent(Graphics g) {
