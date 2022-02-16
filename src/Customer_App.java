@@ -4,6 +4,9 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,8 +17,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 public class Customer_App {
 	private JFrame frame;
-	private JTextField txtEnterId;
-	private JPasswordField passwordField;
+	private JTextField id;
+	private JPasswordField password;
 	/**
 	 * Launch the application.
 	 */
@@ -51,16 +54,16 @@ public class Customer_App {
 		lblNewLabel.setBounds(403, 470, 116, 65);
 		welcomePanel.add(lblNewLabel);
 		
-		txtEnterId = new JTextField();
-		txtEnterId.setFont(new Font("Arial", Font.PLAIN, 30));
-		txtEnterId.setToolTipText("Enter ID");
-		txtEnterId.setBounds(374, 315, 281, 42);
-		welcomePanel.add(txtEnterId);
-		txtEnterId.setColumns(10);
+		id = new JTextField();
+		id.setFont(new Font("Arial", Font.PLAIN, 30));
+		id.setToolTipText("Enter ID");
+		id.setBounds(374, 315, 281, 42);
+		welcomePanel.add(id);
+		id.setColumns(10);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(374, 393, 281, 42);
-		welcomePanel.add(passwordField);
+		password = new JPasswordField();
+		password.setBounds(374, 393, 281, 42);
+		welcomePanel.add(password);
 		
 		JLabel lblNewLabel_1 = new JLabel("ID  : ");
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 33));
@@ -76,6 +79,15 @@ public class Customer_App {
 		btnLogIn.setIcon(new ImageIcon("C:\\Users\\ylose\\eclipse-workspace\\Swing Lessons\\Image\\login_button.jpg"));
 		btnLogIn.setPressedIcon(new ImageIcon("C:\\Users\\ylose\\eclipse-workspace\\Swing Lessons\\Image\\login_button (2).png"));
 		btnLogIn.setBounds(514, 470, 65, 65);
+		btnLogIn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(id.getText().equals("Danny")&& Arrays.equals(password.getPassword(), "hello".toCharArray()))
+					System.out.println("Welcome Danny");
+			}
+			
+		});
 		
 		welcomePanel.add(btnLogIn);
 		frame.setResizable(false);
