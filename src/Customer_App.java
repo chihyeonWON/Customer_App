@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -83,10 +84,13 @@ public class Customer_App {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(id.getText().equals("Danny")&& Arrays.equals(password.getPassword(), "hello".toCharArray()))
+				if(id.getText().equals("Danny")&& Arrays.equals(password.getPassword(), "hello".toCharArray())) {
 					System.out.println("Welcome Danny");
+					welcomePanel.setVisible(false);
+				} else {
+					JOptionPane.showMessageDialog(null, "You failed to log in");
+				}
 			}
-			
 		});
 		
 		welcomePanel.add(btnLogIn);
