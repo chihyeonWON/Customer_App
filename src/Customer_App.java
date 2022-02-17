@@ -1,4 +1,4 @@
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -8,8 +8,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -18,12 +20,17 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import java.awt.Color;
+import javax.swing.SwingConstants;
 public class Customer_App {
 	private JFrame frame;
 	private JTextField id;
 	private JPasswordField password;
+	private JTextField name;
+	private JTextField phone;
+	private JTextField age;
+	private JTextField birthday;
 	/**
 	 * Launch the application.
 	 */
@@ -54,8 +61,6 @@ public class Customer_App {
 		welcomePanel.setBounds(0, -60, 952, 642);
 		frame.setSize(welcomePanel.getWidth(), welcomePanel.getHeight());
 		frame.getContentPane().setLayout(null);
-		frame.getContentPane().add(welcomePanel);
-		welcomePanel.setLayout(null);
 		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setBackground(Color.WHITE);
@@ -68,6 +73,102 @@ public class Customer_App {
 		lbWelcomeThisIs.setFont(new Font("Arial Black", Font.BOLD, 25));
 		lbWelcomeThisIs.setBounds(262, 27, 459, 53);
 		mainPanel.add(lbWelcomeThisIs);
+		frame.getContentPane().add(mainPanel);
+		mainPanel.setLayout(null);
+		
+		JLabel lbName = new JLabel("Name");
+		lbName.setHorizontalAlignment(SwingConstants.CENTER);
+		lbName.setFont(new Font("Tahoma", Font.PLAIN, 21));
+		lbName.setBounds(129, 90, 214, 46);
+		mainPanel.add(lbName);
+		
+		JLabel lbAge = new JLabel("Age");
+		lbAge.setHorizontalAlignment(SwingConstants.CENTER);
+		lbAge.setFont(new Font("Tahoma", Font.PLAIN, 21));
+		lbAge.setBounds(129, 165, 214, 46);
+		mainPanel.add(lbAge);
+		
+		JLabel lblAge_1 = new JLabel("Age");
+		lblAge_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAge_1.setFont(new Font("Tahoma", Font.PLAIN, 21));
+		lblAge_1.setBounds(129, 165, 214, 46);
+		mainPanel.add(lblAge_1);
+		
+		JLabel lbGender = new JLabel("Gender");
+		lbGender.setHorizontalAlignment(SwingConstants.CENTER);
+		lbGender.setFont(new Font("Tahoma", Font.PLAIN, 21));
+		lbGender.setBounds(129, 245, 214, 46);
+		mainPanel.add(lbGender);
+		
+		JLabel lbPhone = new JLabel("Phone");
+		lbPhone.setHorizontalAlignment(SwingConstants.CENTER);
+		lbPhone.setFont(new Font("Tahoma", Font.PLAIN, 21));
+		lbPhone.setBounds(507, 90, 214, 46);
+		mainPanel.add(lbPhone);
+		
+		JLabel lbBirthday = new JLabel("Birthday");
+		lbBirthday.setHorizontalAlignment(SwingConstants.CENTER);
+		lbBirthday.setFont(new Font("Tahoma", Font.PLAIN, 21));
+		lbBirthday.setBounds(507, 165, 214, 46);
+		mainPanel.add(lbBirthday);
+		
+		JLabel lbNote = new JLabel("Note");
+		lbNote.setHorizontalAlignment(SwingConstants.CENTER);
+		lbNote.setFont(new Font("Tahoma", Font.PLAIN, 21));
+		lbNote.setBounds(507, 245, 214, 46);
+		mainPanel.add(lbNote);
+		
+		name = new JTextField();
+		name.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		name.setBounds(289, 90, 241, 46);
+		mainPanel.add(name);
+		name.setColumns(10);
+		
+		phone = new JTextField();
+		phone.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		phone.setColumns(10);
+		phone.setBounds(673, 90, 241, 46);
+		mainPanel.add(phone);
+		
+		age = new JTextField();
+		age.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		age.setColumns(10);
+		age.setBounds(289, 165, 241, 46);
+		mainPanel.add(age);
+		
+		birthday = new JTextField();
+		birthday.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		birthday.setColumns(10);
+		birthday.setBounds(673, 165, 241, 46);
+		mainPanel.add(birthday);
+		
+		JComboBox gender = new JComboBox(new String[] {"Male","Female"});
+		gender.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		gender.setBackground(Color.WHITE);
+		gender.setBounds(289, 249, 241, 46);
+		mainPanel.add(gender);
+		
+		JTextArea note = new JTextArea();
+		note.setBounds(673, 245, 241, 181);
+		note.setBorder(BorderFactory.createLineBorder(Color.decode("#2C6791")));
+		mainPanel.add(note);
+		
+		JButton btnNewButton = new JButton("Submit");
+		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 19));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String mameTxt = name.getText();
+				String ageTxt = age.getText();
+				String phoneTxt = phone.getText();
+				String birthdayTxt = birthday.getText();
+				String genderTxt = gender.getSelectedItem().toString();
+				String noteTxt = note.getText();
+			}
+		});
+		btnNewButton.setBounds(383, 455, 297, 63);
+		mainPanel.add(btnNewButton);
+		frame.getContentPane().add(welcomePanel);
+		welcomePanel.setLayout(null);
 		frame.getContentPane().add(welcomePanel);
 		
 		JLabel lblNewLabel = new JLabel("Log In");
@@ -115,8 +216,6 @@ public class Customer_App {
 		});
 		
 		welcomePanel.add(btnLogIn);
-		frame.getContentPane().add(mainPanel);
-		mainPanel.setLayout(null);
 		frame.setJMenuBar(menuBar());
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null); // 기본위치설정해제
