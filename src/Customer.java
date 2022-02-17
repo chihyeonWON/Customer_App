@@ -4,22 +4,37 @@ import java.sql.PreparedStatement;
 
 public class Customer {
 	public static void main(String[] args) {
-		getConnection();
+		createTable();
+		createCustomer("Danny","123456789","Male","23","Random note...");
+	}
+	
+	public static void createCustomer(String name, String phone, String gender, String age, String note) {
+		try {
+			Connection con = getConnection();
+			PreparedStatement insert = con.prepareStatement(
+					"INSERT INTO customer"
+					+ "(name, phone, gender, age, note)"
+					+ "VALUE "
+					+ "('"+name+"','"+phone+"','"+gender+"','"+age+"','"+note+"')");
+			insert.executeUpdate();
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	public static void createTable() {
 		try {
 			Connection con = getConnection();
-			PreparedStatement createTable = con.prepareStatement(
-					"CREATE TABLE IF NOT EXISTS"
-					+ "customer(id int NOT NULL, AUTO_INCREMENT"
+			PreparedStatement create = con.prepareStatement(
+					"CREATE TABLE IF NOT EXISTS "
+					+ "customer(id int NOT NULL AUTO_INCREMENT,"
 					+ "name varChar(255),"
 					+ "phone varChar(255),"
 					+ "gender varChar(255),"
 					+ "age varChar(255),"
 					+ "note varChar(255),"
 					+ "PRIMARY KEY(id))");
-			createTable.execute();
+			create.execute();
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 		} finally {
