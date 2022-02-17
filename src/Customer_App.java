@@ -12,6 +12,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -94,9 +97,36 @@ public class Customer_App {
 		});
 		
 		welcomePanel.add(btnLogIn);
+		frame.setJMenuBar(menuBar());
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null); // 기본위치설정해제
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	public JMenuBar menuBar() {
+		JMenuBar bar = new JMenuBar();
+		JMenu fileMenu = new JMenu("File");
+		JMenu aboutMenu = new JMenu("About");
+		
+		bar.add(fileMenu);
+		bar.add(aboutMenu);
+		
+		JMenuItem openFile = new JMenuItem("Open");
+		JMenuItem exit = new JMenuItem("Exit");
+		fileMenu.add(openFile);
+		fileMenu.addSeparator();
+		fileMenu.add(exit);
+		
+		exit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+				
+			}
+			
+		});
+		
+		return bar;
 	}
 }
 
