@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import java.awt.Color;
 public class Customer_App {
 	private JFrame frame;
 	private JTextField id;
@@ -50,18 +51,34 @@ public class Customer_App {
 	private void initialize() {
 		frame = new JFrame();
 		ImagePanel welcomePanel = new ImagePanel(new ImageIcon("C://Users//ylose//eclipse-workspace//Swing Lessons//Image//welcome.jpg").getImage());
+		welcomePanel.setBounds(0, -60, 952, 642);
 		frame.setSize(welcomePanel.getWidth(), welcomePanel.getHeight());
-		frame.getContentPane().add(welcomePanel, BorderLayout.SOUTH);
+		frame.getContentPane().setLayout(null);
+		frame.getContentPane().add(welcomePanel);
+		welcomePanel.setLayout(null);
+		
+		JPanel mainPanel = new JPanel();
+		mainPanel.setBackground(Color.WHITE);
+		mainPanel.setBounds(0, 0, 952, 605);
+		frame.getContentPane().add(mainPanel);
+		mainPanel.setLayout(null);
+		mainPanel.setVisible(false);
+		
+		JLabel lbWelcomeThisIs = new JLabel("Welcome This is Main Panel");
+		lbWelcomeThisIs.setFont(new Font("Arial Black", Font.BOLD, 25));
+		lbWelcomeThisIs.setBounds(262, 27, 459, 53);
+		mainPanel.add(lbWelcomeThisIs);
+		frame.getContentPane().add(welcomePanel);
 		
 		JLabel lblNewLabel = new JLabel("Log In");
-		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 30));
 		lblNewLabel.setBounds(403, 470, 116, 65);
+		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 30));
 		welcomePanel.add(lblNewLabel);
 		
 		id = new JTextField();
+		id.setBounds(374, 315, 281, 42);
 		id.setFont(new Font("Arial", Font.PLAIN, 30));
 		id.setToolTipText("Enter ID");
-		id.setBounds(374, 315, 281, 42);
 		welcomePanel.add(id);
 		id.setColumns(10);
 		
@@ -70,19 +87,19 @@ public class Customer_App {
 		welcomePanel.add(password);
 		
 		JLabel lblNewLabel_1 = new JLabel("ID  : ");
-		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 33));
 		lblNewLabel_1.setBounds(292, 320, 116, 30);
+		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 33));
 		welcomePanel.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("PW :");
-		lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 30));
 		lblNewLabel_2.setBounds(292, 392, 84, 30);
+		lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 30));
 		welcomePanel.add(lblNewLabel_2);
 		
 		JButton btnLogIn = new JButton("");
+		btnLogIn.setBounds(514, 470, 65, 65);
 		btnLogIn.setIcon(new ImageIcon("C:\\Users\\ylose\\eclipse-workspace\\Swing Lessons\\Image\\login_button.jpg"));
 		btnLogIn.setPressedIcon(new ImageIcon("C:\\Users\\ylose\\eclipse-workspace\\Swing Lessons\\Image\\login_button (2).png"));
-		btnLogIn.setBounds(514, 470, 65, 65);
 		btnLogIn.addActionListener(new ActionListener() {
 
 			@Override
@@ -90,6 +107,7 @@ public class Customer_App {
 				if(id.getText().equals("Danny")&& Arrays.equals(password.getPassword(), "hello".toCharArray())) {
 					System.out.println("Welcome Danny");
 					welcomePanel.setVisible(false);
+					mainPanel.setVisible(true);
 				} else {
 					JOptionPane.showMessageDialog(null, "You failed to log in");
 				}
@@ -97,6 +115,8 @@ public class Customer_App {
 		});
 		
 		welcomePanel.add(btnLogIn);
+		frame.getContentPane().add(mainPanel);
+		mainPanel.setLayout(null);
 		frame.setJMenuBar(menuBar());
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null); // 기본위치설정해제
