@@ -56,6 +56,7 @@ public class Customer_App {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		Customer customer = new Customer();
 		frame = new JFrame();
 		ImagePanel welcomePanel = new ImagePanel(new ImageIcon("C://Users//ylose//eclipse-workspace//Swing Lessons//Image//welcome.jpg").getImage());
 		welcomePanel.setBounds(0, -60, 952, 642);
@@ -149,6 +150,7 @@ public class Customer_App {
 		mainPanel.add(gender);
 		
 		JTextArea note = new JTextArea();
+		note.setFont(new Font("Arial", Font.PLAIN, 19));
 		note.setBounds(673, 245, 241, 181);
 		note.setBorder(BorderFactory.createLineBorder(Color.decode("#2C6791")));
 		mainPanel.add(note);
@@ -157,12 +159,14 @@ public class Customer_App {
 		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 19));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String mameTxt = name.getText();
+				String nameTxt = name.getText();
 				String ageTxt = age.getText();
 				String phoneTxt = phone.getText();
-				String birthdayTxt = birthday.getText();
 				String genderTxt = gender.getSelectedItem().toString();
 				String noteTxt = note.getText();
+			
+				customer.createCustomer(nameTxt, phoneTxt, genderTxt, ageTxt, noteTxt);
+				JOptionPane.showMessageDialog(null, "Your data has been saved successfully");
 			}
 		});
 		btnNewButton.setBounds(383, 455, 297, 63);
