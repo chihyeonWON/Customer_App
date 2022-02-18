@@ -1,11 +1,36 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class Customer {
 	public static void main(String[] args) {
 		createTable();
 		createCustomer("Danny","123456789","Male","23","Random note...");
+		ArrayList<String> list = getCustomers();
+		for(String item: list) {
+			System.out.println(item);
+		}
+	}
+	
+	public static ArrayList<String> getCustomers() {
+		try {
+			Connection con = getConnection();
+			PreparedStatement statement = con.prepareStatement("Select name, phone, gender FROM customer");
+			ResultSet results = statement.executeQuery();
+			ArrayList<String> list = new ArrayList<String>();
+			while(results.next()) {
+				list.add("Name: "+ results.getString("name") + 
+						" Phone: "+ results.getString("phone") + 
+						" Gender: "+results.getString("gender"));
+			}
+			System.out.println("The data has been fetched");
+			return list;
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
 	}
 	
 	public static void createCustomer(String name, String phone, String gender, String age, String note) {
