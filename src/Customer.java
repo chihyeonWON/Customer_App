@@ -5,15 +5,15 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class Customer {
-	public static void main(String[] args) {
-		createTable();
-		createCustomer("Danny","123456789","Male","23","Random note...");
-		ArrayList<String> list = getCustomers();
-		for(String item: list) {
-			System.out.println(item);
-		}
-	}
-	
+//	public static void main(String[] args) {
+//		createTable();
+//		createCustomer("Danny","123456789","Male","23","Random note...");
+//		ArrayList<String> list = getCustomers();
+//		for(String item: list) {
+//			System.out.println(item);
+//		}
+//	}
+//	
 	public static ArrayList<String> getCustomers() {
 		try {
 			Connection con = getConnection();
@@ -42,6 +42,7 @@ public class Customer {
 					+ "VALUE "
 					+ "('"+name+"','"+phone+"','"+gender+"','"+age+"','"+note+"')");
 			insert.executeUpdate();
+			System.out.println("The data has been saved!");
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
