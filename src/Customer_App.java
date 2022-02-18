@@ -167,6 +167,7 @@ public class Customer_App {
 			
 				customer.createCustomer(nameTxt, phoneTxt, genderTxt, ageTxt, noteTxt);
 				JOptionPane.showMessageDialog(null, "Your data has been saved successfully");
+				mainPanel.setVisible(false);
 			}
 		});
 		btnNewButton.setBounds(383, 455, 297, 63);
