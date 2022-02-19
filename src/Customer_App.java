@@ -20,6 +20,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -59,9 +61,23 @@ public class Customer_App {
 		Customer customer = new Customer();
 		frame = new JFrame();
 		ImagePanel welcomePanel = new ImagePanel(new ImageIcon("C://Users//ylose//eclipse-workspace//Swing Lessons//Image//welcome.jpg").getImage());
-		welcomePanel.setBounds(0, -60, 952, 642);
-		frame.setSize(welcomePanel.getWidth(), welcomePanel.getHeight());
+		welcomePanel.setBounds(0, 0, 954, 605);
+		frame.setSize(welcomePanel.getWidth(),welcomePanel.getHeight());
 		frame.getContentPane().setLayout(null);
+		
+		JPanel tablePanel = new JPanel();
+		tablePanel.setBounds(0, 0, 954, 544);
+		tablePanel.setVisible(true);
+		String[][] data = customer.getCustomers();
+		String[] headers = new String[]{"Name","Phone","Age","Gender","Note"};
+		JTable table = new JTable(data,headers);
+		table.setRowHeight(30);
+		table.setFont(new Font("Sanserif", Font.BOLD, 15));
+		table.setAlignmentX(0);
+		table.setSize(800,400);
+		table.setPreferredScrollableViewportSize(new Dimension(800, 400));
+		tablePanel.add(new JScrollPane(table));
+		frame.getContentPane().add(tablePanel);
 		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setBackground(Color.WHITE);
@@ -172,9 +188,6 @@ public class Customer_App {
 		});
 		btnNewButton.setBounds(383, 455, 297, 63);
 		mainPanel.add(btnNewButton);
-		frame.getContentPane().add(welcomePanel);
-		welcomePanel.setLayout(null);
-		frame.getContentPane().add(welcomePanel);
 		
 		JLabel lblNewLabel = new JLabel("Log In");
 		lblNewLabel.setBounds(403, 470, 116, 65);
@@ -213,7 +226,7 @@ public class Customer_App {
 				if(id.getText().equals("Danny")&& Arrays.equals(password.getPassword(), "hello".toCharArray())) {
 					System.out.println("Welcome Danny");
 					welcomePanel.setVisible(false);
-					mainPanel.setVisible(true);
+					mainPanel.setVisible(true);	
 				} else {
 					JOptionPane.showMessageDialog(null, "You failed to log in");
 				}
