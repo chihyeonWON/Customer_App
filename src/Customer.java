@@ -14,19 +14,24 @@ public class Customer {
 //		}
 //	}
 //	
-	public static ArrayList<String> getCustomers() {
+	public static String[][] getCustomers() {
 		try {
 			Connection con = getConnection();
-			PreparedStatement statement = con.prepareStatement("Select name, phone, gender FROM customer");
+			PreparedStatement statement = con.prepareStatement("Select name, phone, gender, age, note FROM customer");
 			ResultSet results = statement.executeQuery();
-			ArrayList<String> list = new ArrayList<String>();
+			ArrayList<String[]> list = new ArrayList<String[]>();
 			while(results.next()) {
-				list.add("Name: "+ results.getString("name") + 
-						" Phone: "+ results.getString("phone") + 
-						" Gender: "+results.getString("gender"));
+				list.add(new String[]{
+						results.getString("name"),
+						results.getString("phone"),
+						results.getString("gender"),
+						results.getString("age"),
+						results.getString("note")
+				});
 			}
 			System.out.println("The data has been fetched");
-			return list;
+			String[][] arr = new String[list.size()][5];
+			return list.toArray(arr);
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 			return null;
